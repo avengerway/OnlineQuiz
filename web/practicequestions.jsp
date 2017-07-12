@@ -16,7 +16,7 @@
     <body>
         <h1 align="center"><%=(String)session.getAttribute("field")%></h1>
        
-     <% String sub=(String)request.getAttribute("subject");
+     <% String sub=(String)session.getAttribute("table");
   Quizbo bo=new Quizbo();
      int k=bo.getQuestionCount(sub);%>
       <h1><%=sub%></h1>
@@ -165,7 +165,7 @@
         <p id="b"></p>
         <p id="c"></p>
         <p id="d"></p>
-        <p id="answer"></p>
+    
         
         <br/>
         <button id="back">Back</button>

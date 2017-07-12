@@ -36,6 +36,14 @@
         <servlet-name>getSubjectCount</servlet-name>
         <servlet-class>com.quiz.controller.getSubjectCount</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getMockTestController</servlet-name>
+        <servlet-class>com.quiz.controller.getMockTestController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MockTestResultController</servlet-name>
+        <servlet-class>com.quiz.controller.MockTestResultController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>quizbranchcontroller</servlet-name>
         <url-pattern>/quizbranchcontroller</url-pattern>
@@ -71,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>getSubjectCount</servlet-name>
         <url-pattern>/getSubjectCount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getMockTestController</servlet-name>
+        <url-pattern>/getMockTestController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MockTestResultController</servlet-name>
+        <url-pattern>/MockTestResultController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

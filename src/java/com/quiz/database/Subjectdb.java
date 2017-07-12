@@ -72,6 +72,7 @@ public class Subjectdb {
         } 
         return array;
     }
+    
    public static JSONArray getQuestions(String set){
 		  String query="select * from "+set+" ";
                 
@@ -181,6 +182,70 @@ public class Subjectdb {
         }
         return obj.toString();
     }
+    
+    
+    
+    
+    
+    
+    public int getRightAnswer(HashMap<String,String> lm,String table)
+    {
+        table=table.replaceAll("\\s","");
+         String query="select * from "+table+" ";
+        int l=lm.size();
+        String a[]=new String[l];
+ int i=0;
+ int c=0;
+      String answer;
+         try
+        {
+            Connection con=DBConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement(query,
+                                        ResultSet.TYPE_SCROLL_INSENSITIVE,
+                                        ResultSet.CONCUR_UPDATABLE);
+          
+           ResultSet rs=ps.executeQuery();
+              for( String key : lm.keySet() ) {
+          int ques_no=Integer.parseInt(key);
+                rs.absolute(ques_no);
+                   answer=rs.getString(7);
+        a[i]=answer;
+        i++;
+    
+}
+             
+           con.close(); 
+           
+              
+           
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }  
+            i=0;
+ 
+    for(Map.Entry m:lm.entrySet()){  
+   if(m.getValue().equals(a[i]))
+   {
+     c++;  
+   }
+   i++;
+  } 
+    
+    return c;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public static int getAnswers(String table,HashMap<Integer,String> lm)
     {
      table=table.replaceAll("\\s","");
@@ -220,4 +285,46 @@ public class Subjectdb {
     
     return c;
     }
+      public static JSONArray getMockQuestions(String set){
+		  String query="select * from "+set+" ";
+                
+		JSONArray array=new JSONArray();
+		JSONObject obj;
+		
+		try{
+			Connection con=DBConnection.getConnection();
+			PreparedStatement ps=con.prepareStatement(query);
+			
+			
+			ResultSet rs=ps.executeQuery();			
+			
+			
+			while(rs.next()){
+				obj=new JSONObject();
+                                obj.put("question_no",rs.getInt(1));
+				obj.put("question", rs.getString(2));
+				obj.put("ques_a",rs.getString(3));
+                                obj.put("ques_b",rs.getString(4));
+                                obj.put("ques_c",rs.getString(5));
+                                obj.put("ques_d",rs.getString(6));
+                                
+                                    
+				
+				
+				
+				
+				array.put(obj);
+			}
+			
+			rs.close();
+			
+			ps.close();
+			con.close();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return array;
+	}
 }

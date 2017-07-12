@@ -26,7 +26,7 @@
     
     <br/>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <button id="start" style="width:60px;height:30px" onClick="parent.location='test.jsp'">Start</button>    
+    <button id="start" style="width:60px;height:30px" onclick="window.open('test.jsp','popUpWindow','height=' + screen.height + ',width=' + screen.width + ',resizable=no,scrollbars=no,toolbar=no,menubar=no,location=yes'); return false;">Start</button>    
     </div>
     </body>
 </html>

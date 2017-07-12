@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 import com.quiz.buisness.Quizbo;
+import java.io.PrintWriter;
 import javax.servlet.http.HttpSession;
     import org.json.JSONArray;
 
@@ -34,7 +35,7 @@ public class subjectquestioncontroller extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
        String table=request.getParameter("given");
-       
+       PrintWriter out=response.getWriter();
        HttpSession session=request.getSession();
        session.setAttribute("table",table);
        String field=(String)session.getAttribute("field");
@@ -51,8 +52,10 @@ rd.forward(request, response);
         else if(field.equalsIgnoreCase("practice"))
     {
         request.setAttribute("subject",table);
-     rd=request.getRequestDispatcher("practicequestions.jsp");
-    rd.forward(request, response);
+   
+  rd=request.getRequestDispatcher("practicequestioninstructions.jsp");
+  rd.forward(request,response);
+ 
     }
     }
   

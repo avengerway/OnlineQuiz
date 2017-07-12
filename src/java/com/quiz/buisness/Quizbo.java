@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import com.quiz.database.Subjectdb;
 import com.quiz.database.User;
 import com.quiz.model.Question;
+import java.util.HashMap;
+import java.util.Iterator;
+import org.json.JSONObject;
 
 
 /**
@@ -33,7 +36,15 @@ public class Quizbo  {
          JSONArray arr=db.getQuestions(tablename);
          return arr;
     }
-   
+   public JSONArray getMockArray(String table)
+   {
+       String tables=table.replaceAll("\\s","");
+       Subjectdb db=new Subjectdb();
+       JSONArray arr=db.getMockQuestions(tables);
+       return arr;
+       
+       
+   }
     public int getQuestionCount(String sub)
           
     {
@@ -75,6 +86,32 @@ public class Quizbo  {
         User u=new User();
         boolean flag=u.signIn(userid,pass);
         return flag;
+    }
+    public int getMockAnswer(String json,String sub)
+    {
+        
+       
+        HashMap<String, String> map = new HashMap<>();
+        try
+        {
+        JSONObject jObject = new JSONObject(json);
+        Iterator<?> keys = jObject.keys();
+
+        while( keys.hasNext() ){
+            String key = (String)keys.next();
+            String value = jObject.getString(key); 
+            map.put(key, value);
+        }
+        
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        Subjectdb db=new Subjectdb();
+        System.out.println(map);
+       int count=db.getRightAnswer(map,sub);
+       return count;
     }
     }
     
