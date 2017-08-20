@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Subjects</title>
-          <link rel="stylesheet" href="main_1.css" />
+          <link rel="stylesheet" href="css/main_1.css" />
     </head>
     <body>
         <!-- Wrapper -->

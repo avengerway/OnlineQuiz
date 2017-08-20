@@ -8,7 +8,7 @@
 <%@page import="com.quiz.database.Subjectdb"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.quiz.model.Subject"%>
-<!DOCTYPE html
+<!DOCTYPE html>
     <%     ArrayList<Subject> sube=(ArrayList<Subject>)session.getAttribute("sublist");
             String s1=sube.get(0).getSub();
             String s2=sube.get(1).getSub();
@@ -19,6 +19,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+           <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+       
+     
         <title>Result</title>
     </head>
     <body>
@@ -51,7 +55,7 @@
 
 
         %>
-        <table border="1">
+        <table class="table table-striped">
             <tr>
                 <th>SUBJECT</th>
                 <th>Number of Questions</th>

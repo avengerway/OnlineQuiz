@@ -1,26 +1,29 @@
 package com.quiz.controller;
 
+import com.quiz.database.Subjectdb;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import org.json.JSONArray;
 
-public class quizbranchcontroller extends HttpServlet {
+public class GetSubjectController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-          HttpSession session=request.getSession();
-        String name=request.getParameter("field");
-        session.setAttribute("field", name);
-        RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/jsp/branch.jsp");
-        rd.forward(request,response);
+         Subjectdb sdb=new Subjectdb();
+         PrintWriter out=response.getWriter();
+   String branc=request.getParameter("branch");
+   int se=Integer.parseInt(request.getParameter("sem"));
+   JSONArray al=Subjectdb.getSubjects(branc,se);
+   out.print(al);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-       
+      
     }
 }

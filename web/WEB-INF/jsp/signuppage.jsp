@@ -9,7 +9,7 @@
 <html>
     <head>
         
-           <script src="jquery-1.11.3.js"></script>
+           <script src="js/jquery-1.11.3.js"></script>
 <style>
 /* Full-width input fields */
 input[type=text], input[type=password] {
@@ -97,7 +97,7 @@ button {
     </script>
 <h2>Signup Form</h2>
 
-<form action="signupusercontroller" style="border:1px solid #ccc">
+<form action="signupusercontroller" style="border:1px solid #ccc" method="post">
   <div class="container">
       <label><b>UserID</b></label><p id="user" style="color:green">  </p><br>
       <input type="text" placeholder="User ID" name="email" id="userid" required>&nbsp;&nbsp;<button id="check" style="padding :10px 5px; width: 10%" >check validation</button><br><br>

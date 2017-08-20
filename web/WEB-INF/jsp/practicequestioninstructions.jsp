@@ -25,7 +25,7 @@
     
     <br/>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <button id="start" style="width:60px;height:30px" onclick="window.open('practicequestions.jsp','popUpWindow','height=' + screen.height + ',width=' + screen.width + ',resizable=no,scrollbars=no,toolbar=no,menubar=no,location=yes'); return false;">Start</button>    
+      <a href="PracticeController"><button id="start" style="width:60px;height:30px">Start</button> </a>      
     </div>
     </body>
 </html>

@@ -76,7 +76,7 @@ span.psw {
 
     <form action="logincontroller" method="post">
   <div class="imgcontainer">
-    <img src="images\\loginreal.jpg" alt="Avatar" class="avatar">
+    <img src="images/loginreal.jpg" alt="Avatar" class="avatar">
   </div>
 
   <div class="container">

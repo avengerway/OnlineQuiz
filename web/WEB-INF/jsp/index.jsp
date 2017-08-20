@@ -9,9 +9,9 @@
 
 <html>
 	<head>
-		<style>
-			@import "ss.css";<!-- link can also be used-->
-		</style>
+		
+			 <link rel="stylesheet" href="css/ss.css" />
+		
 	</head>
 	<body>
 	
@@ -27,8 +27,8 @@
 					
 	                <li><a href =""> ABOUT US </a></li>
 					
-					<li><a href = "loginuser.jsp">SIGN IN</a></li>
-					<li><a href = "signuppage.jsp">SIGN UP</a><li>
+					<li><a href ="logincontroller">SIGN IN</a></li>
+					<li><a href ="signupusercontroller">SIGN UP</a><li>
 					
 				</ul>
 			</div><!-- end navigation-->

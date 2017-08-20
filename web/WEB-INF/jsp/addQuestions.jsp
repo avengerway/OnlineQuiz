@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add Questions</title>
-         <script src="jquery-1.11.3.js"></script>
+         <script src="js/jquery-1.11.3.js"></script>
      
     </head>
     <body>
@@ -20,7 +20,7 @@
               
                                var branch=$("#branch").val();
               var sem=$("#sem").val();
-                       $.get('getSubject.jsp?branch='+branch+'&sem='+sem,function(data,status){
+                       $.get('GetSubjectController?branch='+branch+'&sem='+sem,function(data,status){
             var obj=JSON.parse(data);
          
           
@@ -38,7 +38,7 @@
               $("#subject").empty();
                          var branch=$("#branch").val();
               var sem=$("#sem").val();
-                       $.get('getSubject.jsp?branch='+branch+'&sem='+sem,function(data,status){
+                       $.get('GetSubjectController?branch='+branch+'&sem='+sem,function(data,status){
             var obj=JSON.parse(data);
          
           
@@ -59,7 +59,7 @@
               $("#subject").empty();
                          var branch=$("#branch").val();
               var sem=$("#sem").val();
-                       $.get('getSubject.jsp?branch='+branch+'&sem='+sem,function(data,status){
+                       $.get('GetSubjectController?branch='+branch+'&sem='+sem,function(data,status){
             var obj=JSON.parse(data);
          
           
@@ -101,8 +101,7 @@
         <h2>Add Question</h2>
      
    
-           
-        <form name="login" method="POST">
+
             <table cellpadding="10">
                        
                 <tr>
@@ -182,7 +181,7 @@
                     <td><p id="success"></p></td>
                 </tr>
             </table>
-        </form>   
+         
 
         
     </div>

@@ -17,10 +17,6 @@
         <servlet-class>com.quiz.controller.practiceresultcontroller</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>admincontroller</servlet-name>
-        <servlet-class>com.quiz.controller.admincontroller</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AddQuestionController</servlet-name>
         <servlet-class>com.quiz.controller.AddQuestionController</servlet-class>
     </servlet>
@@ -44,6 +40,18 @@
         <servlet-name>MockTestResultController</servlet-name>
         <servlet-class>com.quiz.controller.MockTestResultController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>com.quiz.controller.HomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TestController</servlet-name>
+        <servlet-class>com.quiz.controller.TestController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetSubjectController</servlet-name>
+        <servlet-class>com.quiz.controller.GetSubjectController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>quizbranchcontroller</servlet-name>
         <url-pattern>/quizbranchcontroller</url-pattern>
@@ -59,10 +67,6 @@
     <servlet-mapping>
         <servlet-name>practiceresultcontroller</servlet-name>
         <url-pattern>/practiceresultcontroller</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>admincontroller</servlet-name>
-        <url-pattern>/admincontroller</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddQuestionController</servlet-name>
@@ -88,6 +92,18 @@
         <servlet-name>MockTestResultController</servlet-name>
         <url-pattern>/MockTestResultController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/Home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestController</servlet-name>
+        <url-pattern>/TestController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetSubjectController</servlet-name>
+        <url-pattern>/GetSubjectController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -109,4 +125,7 @@
         <param-name>Onlinequiz</param-name>
         <param-value>ONLINEQUIZ</param-value>
     </context-param>
+    <welcome-file-list>
+        <welcome-file>Home</welcome-file>
+    </welcome-file-list>
 </web-app>
