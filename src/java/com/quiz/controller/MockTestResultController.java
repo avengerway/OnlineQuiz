@@ -56,7 +56,7 @@ public class MockTestResultController extends HttpServlet {
    int right4=bo.getMockAnswer(json4,sub4);
   int right5=bo.getMockAnswer(json5,sub5);
   int right6=bo.getMockAnswer(json6,sub6);
-  RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/jsp/showMockTestResult.jsp");
+  RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/jsp/member/showMockTestResult.jsp");
 request.setAttribute("right1",right1);
 request.setAttribute("right2",right2);
 request.setAttribute("right3",right3);

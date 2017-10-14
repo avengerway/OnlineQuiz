@@ -45,7 +45,7 @@ public class practiceresultcontroller extends HttpServlet {
   int right=Subjectdb.getAnswers(table, lm);
 
   
-  RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/jsp/getResult.jsp");
+  RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/jsp/member/getResult.jsp");
 request.setAttribute("right",right);
 rd.forward(request, response);
   

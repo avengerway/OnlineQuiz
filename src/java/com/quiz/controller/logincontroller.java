@@ -30,7 +30,7 @@ public class logincontroller extends HttpServlet {
       Quizbo qb=new Quizbo();
         if(qb.checkDetails(email,pass))
         {
-            RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/jsp/addQuestions.jsp");
+            RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/jsp/admin/adminoptions.jsp");
             rd.forward(request, response);
             HttpSession session=request.getSession();
             session.setAttribute("email",email);

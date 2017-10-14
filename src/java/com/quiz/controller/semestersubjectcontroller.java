@@ -23,7 +23,7 @@ public class semestersubjectcontroller extends HttpServlet {
          ArrayList<Subject> list=bo.retrieveSubject(sem);
        if(field.equalsIgnoreCase("mocktest"))
        {
-           RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/jsp/instructions.jsp");
+           RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/jsp/member/instructions.jsp");
            session.setAttribute("sublist",list);
            rd.forward(request,response);
            
@@ -32,7 +32,7 @@ public class semestersubjectcontroller extends HttpServlet {
        {
          if(list!=null)
          {
-             RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/jsp/showsubject.jsp");
+             RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/jsp/member/showsubject.jsp");
              request.setAttribute("sublist",list);
              rd.forward(request, response);
              

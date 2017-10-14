@@ -15,7 +15,7 @@ public class quizbranchcontroller extends HttpServlet {
           HttpSession session=request.getSession();
         String name=request.getParameter("field");
         session.setAttribute("field", name);
-        RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/jsp/branch.jsp");
+        RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/jsp/member/branch.jsp");
         rd.forward(request,response);
     }
 

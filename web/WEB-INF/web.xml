@@ -52,6 +52,14 @@
         <servlet-name>GetSubjectController</servlet-name>
         <servlet-class>com.quiz.controller.GetSubjectController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddSubjectQuestions</servlet-name>
+        <servlet-class>com.quiz.controller.AddSubjectQuestions</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editdeletesubjectquestions</servlet-name>
+        <servlet-class>com.quiz.controller.editdeletesubjectquestions</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>quizbranchcontroller</servlet-name>
         <url-pattern>/quizbranchcontroller</url-pattern>
@@ -103,6 +111,14 @@
     <servlet-mapping>
         <servlet-name>GetSubjectController</servlet-name>
         <url-pattern>/GetSubjectController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSubjectQuestions</servlet-name>
+        <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editdeletesubjectquestions</servlet-name>
+        <url-pattern>/editdelete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -32,7 +32,7 @@ public class getSubjectCount extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out=response.getWriter();
-     String subject=request.getParameter("WEB-INF/jsp/subject");
+     String subject=request.getParameter("subject");
      Quizbo bo=new Quizbo();
      int count=bo.getQuestionCount(subject);
      out.print(count);

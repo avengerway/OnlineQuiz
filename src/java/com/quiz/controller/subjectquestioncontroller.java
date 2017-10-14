@@ -45,15 +45,15 @@ public class subjectquestioncontroller extends HttpServlet {
       if(field.equalsIgnoreCase("study"))
       {
   JSONArray arr=qb.getArray(table);
-rd=request.getRequestDispatcher("WEB-INF/jsp/studyquestions.jsp");
+rd=request.getRequestDispatcher("WEB-INF/jsp/member/studyquestions.jsp");
 request.setAttribute("table",arr );
 rd.forward(request, response);
     }
         else if(field.equalsIgnoreCase("practice"))
     {
-        request.setAttribute("subject",table);
+      
    
-  rd=request.getRequestDispatcher("WEB-INF/jsp/practicequestioninstructions.jsp");
+  rd=request.getRequestDispatcher("WEB-INF/jsp/member/practicequestioninstructions.jsp");
   rd.forward(request,response);
  
     }
