@@ -1,8 +1,4 @@
-<%-- 
-    Document   : practicequestioninstructions
-    Created on : May 16, 2017, 4:34:43 PM
-    Author     : Piyush
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

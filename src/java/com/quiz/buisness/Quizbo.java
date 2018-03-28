@@ -52,10 +52,10 @@ public class Quizbo  {
         int count=Subjectdb.count(sub);
         return count;
     }
-    public boolean checkDetails(String email,String password)
+    public boolean checkDetails(String id,String password)
     {
       
-       boolean status=Admin.loginDetails(email, password);
+       boolean status=Admin.loginDetails(id, password);
        return status;
                
     }
@@ -64,6 +64,13 @@ public class Quizbo  {
        
         Admin a=new Admin();
         boolean status=a.addQues(q);
+        return status;
+    }
+        public boolean UpdateQuestion(Question q)
+    {
+       
+        Admin a=new Admin();
+        boolean status=a.UpdateQues(q);
         return status;
     }
     public boolean checkId(String id)
@@ -75,22 +82,22 @@ public class Quizbo  {
     }
     public boolean addUser(String id,String pass)
     {
-        int userid=Integer.parseInt(id);
+       
        User u=new User();
-       boolean flag=u.signUp(userid,pass);
+       boolean flag=u.signUp(id,pass);
        return flag;
     }
     public boolean logIn(String id,String pass)
     {
-        int userid=Integer.parseInt(id);
+       
         User u=new User();
-        boolean flag=u.signIn(userid,pass);
+        boolean flag=u.signIn(id,pass);
         return flag;
     }
-    public int getMockAnswer(String json,String sub)
+    public int[] getMockAnswer(String json,String sub)
     {
         
-       
+       int count[]=new int[2];
         HashMap<String, String> map = new HashMap<>();
         try
         {
@@ -110,7 +117,7 @@ public class Quizbo  {
         }
         Subjectdb db=new Subjectdb();
         System.out.println(map);
-       int count=db.getRightAnswer(map,sub);
+        count=db.getRightAnswer(map,sub);
        return count;
     }
     }

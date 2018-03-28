@@ -5,15 +5,16 @@
  */
 package com.quiz.controller;
 
-import com.quiz.database.Subjectdb;
+import com.quiz.buisness.Quizbo;
+
 import java.io.IOException;
-import java.util.HashMap;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.PrintWriter;
+
 import javax.servlet.RequestDispatcher;
 /**
  *
@@ -33,21 +34,20 @@ public class practiceresultcontroller extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-     HttpSession session=request.getSession();
-     String table=(String)session.getAttribute("table");
-     HashMap<Integer,String> lm=(HashMap)session.getAttribute("all_answers");
-   session.removeAttribute("all_answers");
-
-
-
-
-  
-  int right=Subjectdb.getAnswers(table, lm);
-
-  
+        String json1=request.getParameter("jsonfile1");
+      
+         HttpSession session=request.getSession();
+         String sub1=(String)session.getAttribute("table");
+       
+         int right1[]=new int[2];
+      Quizbo bo=new Quizbo();
+   right1=bo.getMockAnswer(json1,sub1);
+ 
   RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/jsp/member/getResult.jsp");
-request.setAttribute("right",right);
+request.setAttribute("right1",right1);
+
 rd.forward(request, response);
+  
   
     }
 

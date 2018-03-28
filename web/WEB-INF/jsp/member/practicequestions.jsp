@@ -1,8 +1,4 @@
-<%-- 
-    Document   : practicequestions
-    Created on : Aug 20, 2017, 10:42:54 PM
-    Author     : Piyush
---%>
+
 <%@page import="com.quiz.database.Subjectdb"%>
 <%@page import="com.quiz.buisness.Quizbo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -53,6 +49,7 @@
               $('#question').append(create);  
 	}
     });
+      $('#submit').click(function(){
          var a={};
   
         var answer;
@@ -68,11 +65,12 @@
       }
       
     var json1=JSON.stringify(a);
-     document.location.href='MockTestResultController?jsonfile1='+json1;
+     document.location.href='practiceresultcontroller?jsonfile1='+json1;
+      });
 });  
   
  </script>
-    
+      <button id="submit" style="float:right;">SUBMIT </button>
          <div id="section">
         
      

@@ -11,6 +11,15 @@ package com.quiz.model;
  */
 public class Question {
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
     private String subject;
     private String ques;
     private String a;

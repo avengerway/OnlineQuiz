@@ -1,8 +1,4 @@
-<%-- 
-    Document   : studyquestions
-    Created on : Mar 21, 2017, 12:17:19 AM
-    Author     : Piyush
---%>
+
 <%@page import="org.json.JSONArray"%>
 <%@page import="org.json.JSONObject"%>
 

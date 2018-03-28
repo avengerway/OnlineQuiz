@@ -5,6 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <title>Result</title>
     </head>
     <body>
@@ -14,25 +15,32 @@
         <%
             String table = (String) session.getAttribute("table");
             table=table.replaceAll("\\s","");
-                    
+                int right1[]=new int[2];    
             int noq = Subjectdb.count(table);
-            int right=(int)request.getAttribute("right");
+            right1=(int[])request.getAttribute("right1");
           
 
-            int wrong = noq - right;
+           int wrong1 = Math.abs(right1[1]-right1[0]);
+               int na1=Math.abs(noq-right1[1]);
 
 
         %>
-        <table border="1">
-            <tr>
+       <table class="table table-striped">
+            
+                 <tr>
                 <th>Number of Questions</th>
                 <th>Right Answers</th> 
                 <th>Wrong Answers</th>
+                <th>Not attempted</th>
+                <th>Attempted</th>
             </tr>
+            
             <tr>
                 <td><%=noq%></td>
-                <td><%=right%></td>
-                <td><%=wrong%></td>
+                <td><%=right1[0]%></td>
+                <td><%=wrong1%></td>
+                <td><%=na1%></td>
+                <td><%=right1[1]%></td>
             </tr>
 
 

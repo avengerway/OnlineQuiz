@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 package com.quiz.database;
+import com.quiz.model.Question;
 import com.quiz.model.Subject;
 import java.util.ArrayList;
         
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringJoiner;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -151,27 +153,31 @@ public class Subjectdb {
         }
 	
  
-    public static String getQuestion(String tablename,int qno)
+    public static Question getQuestion(String tablename,int qno)
     {
-          String query="select * from "+tablename+" ";
-       JSONObject obj=new JSONObject();
+          tablename=tablename.replaceAll("\\s","");
+        Question q=new Question();
+          String query="select * from "+tablename+" where ques_id=?";
+          
         try
         {
             Connection con=DBConnection.getConnection();
-            PreparedStatement ps = con.prepareStatement(query,
-                                        ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                        ResultSet.CONCUR_UPDATABLE);
+            PreparedStatement ps = con.prepareStatement(query);
+                    ps.setInt(1,qno);                    
           
            ResultSet rs=ps.executeQuery();
-           rs.absolute(qno);
           
-               obj.put("ques_no", rs.getInt(1));
-               obj.put("ques_text", rs.getString(2));
-               obj.put("A", rs.getString(3));
-               obj.put("B", rs.getString(4));
-               obj.put("C", rs.getString(5));
-               obj.put("D", rs.getString(6));
-              
+          if(rs.next())
+          {
+               q.setId(rs.getInt(1));
+               q.setQues(rs.getString(2));
+               q.setA(rs.getString(3));
+               q.setB(rs.getString(4));
+               q.setC(rs.getString(5));
+               q.setD(rs.getString(6));
+               q.setAnswer(rs.getString(7));
+               q.setSubject(tablename);
+          }
                
            con.close();
         }
@@ -179,7 +185,7 @@ public class Subjectdb {
         {
             ex.printStackTrace();
         }
-        return obj.toString();
+        return q;
     }
     
     
@@ -187,42 +193,45 @@ public class Subjectdb {
     
     
     
-    public int getRightAnswer(HashMap<String,String> lm,String table)
+    public int[] getRightAnswer(HashMap<String,String> lm,String table)
     {
-        table=table.replaceAll("\\s","");
-         String query="select * from "+table+" ";
-        int l=lm.size();
-        String a[]=new String[l];
- int i=0;
- int c=0;
-      String answer;
-         try
-        {
-            Connection con=DBConnection.getConnection();
-            PreparedStatement ps = con.prepareStatement(query,
-                                        ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                        ResultSet.CONCUR_UPDATABLE);
-          
-           ResultSet rs=ps.executeQuery();
-              for( String key : lm.keySet() ) {
-          int ques_no=Integer.parseInt(key);
-                rs.absolute(ques_no);
-                   answer=rs.getString(7);
-        a[i]=answer;
-        i++;
+ table=table.replaceAll("\\s","");
+     String a[]=new String[lm.size()];
+     int ans[]=new int[2];
+     int k=0;
+     
+
+   
+  StringJoiner joiner = new StringJoiner(",","select answer from "+table+" where ques_id in (",")");
+               for( String key : lm.keySet() ) {
+       joiner.add("?");
+     ++k;
     
 }
-             
-           con.close(); 
-           
-              
-           
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }  
-            i=0;
+
+String query = joiner.toString();
+Connection conn=DBConnection.getConnection();
+try  {
+    PreparedStatement ps = conn.prepareStatement(query);
+    int c=1;
+for( String key : lm.keySet() ) {
+     int ques_no=Integer.parseInt(key);
+     ps.setObject(c++, ques_no);
+}
+  ResultSet rs = ps.executeQuery();
+  int i=0;
+  while(rs.next())
+  {
+     a[i]=rs.getString("answer"); 
+     i++;
+  }
+
+  }
+catch(Exception ex)
+{
+}
+        int  i=0;
+        int c=0;
  
     for(Map.Entry m:lm.entrySet()){  
    if(m.getValue().equals(a[i]))
@@ -232,7 +241,11 @@ public class Subjectdb {
    i++;
   } 
     
-    return c;
+
+  ans[0]=c;
+  ans[1]=k;
+     
+    return ans;
     }
     
     
@@ -285,6 +298,7 @@ public class Subjectdb {
     return c;
     }
       public static JSONArray getMockQuestions(String set){
+            set=set.replaceAll("\\s","");
 		  String query="select * from "+set+" ";
                 
 		JSONArray array=new JSONArray();
@@ -326,4 +340,61 @@ public class Subjectdb {
 		
 		return array;
 	}
+      public static boolean deleteQuestion(String sub,int id)
+      {
+           boolean status=false;
+       
+        sub=sub.replaceAll("\\s","");
+        
+        String query="delete from "+sub+" where ques_id=?";
+        try
+        {
+            Connection con=DBConnection.getConnection();
+            PreparedStatement ps=con.prepareStatement(query);
+          
+            ps.setInt(1, id);
+          
+            ps.executeUpdate();
+            con.close();
+           status=true;
+        }catch(Exception e)
+        {
+           
+            status=false;
+            e.printStackTrace();
+        }
+        return status;
+          
+      }
+      
+      public static boolean insertSubject(String branch,int sem, String subject)
+      {
+             boolean status;
+       
+       String sub=subject;
+         sub=sub.replaceAll("\\s","");
+       String query="create table "+sub+" (select * from cbnst where 1=2)";
+        try
+        {
+            Connection con=DBConnection.getConnection();
+            PreparedStatement ps=con.prepareStatement("insert into semsub values(?,?,?)");
+          
+            ps.setString(1, subject);
+            ps.setString(2,branch);
+            ps.setInt(3,sem);
+            ps.executeUpdate();
+            
+            PreparedStatement st=con.prepareStatement(query);
+            st.executeUpdate();
+            
+            
+           status=true;
+        }catch(Exception e)
+        {
+           
+            status=false;
+            e.printStackTrace();
+        }
+        return status; 
+      }
 }

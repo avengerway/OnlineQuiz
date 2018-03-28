@@ -1,97 +1,51 @@
-<%-- 
-    Document   : loginuser
-    Created on : Apr 13, 2017, 11:43:33 PM
-    Author     : Piyush
---%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!DOCTYPE html>
+
 <html>
-<style>
-form {
-    border: 3px solid #f1f1f1;
-}
-
-input[type=text], input[type=password] {
-    width: 20%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 20%;
-}
-
-button:hover {
-    opacity: 0.8;
-}
-
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-}
-
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-}
-
-img.avatar {
-    width: 40%;
-    border-radius: 25%;
-}
-
-.container {
-    padding: 16px;
-}
-
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-       display: block;
-       float: none;
-    }
-   
-}
-</style>
+    <head>
+         <title>Sign In</title>
+    <link rel="stylesheet" href="css/login.css">       
+ <link rel="stylesheet" href="css/bootstrap.min.css">
+ 
+<script src="js/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+    </head>
 <body>
-
-
-
+ 
+    
+   
+    
+    
+ <%@include file="../jspf/header.jspf" %>
+<div class="container">
+   <div class="formbasic">
     <form action="logincontroller" method="post">
-  <div class="imgcontainer">
-    <img src="images/loginreal.jpg" alt="Avatar" class="avatar">
-  </div>
+        <div class="form-group">
+            <label for="userid"><strong>USER ID</strong></label>
+            <input type="text" placeholder="Enter Userid" name="uname" id="userid" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password"><strong>PASSWORD</strong></label>
+            <input type="password" placeholder="Enter Password" name="psw" id="password" class="form-control" required>
+        </div>
+                <c:if test="${!empty error}">
+                    <div>
+                        <h5 style="color:red;">${error}</h5>
+                    </div>
+                </c:if>
 
-  <div class="container">
-      <label><b>UserID&nbsp;&nbsp;&nbsp;&nbsp;:</b></label>
-    <input type="text" placeholder="Enter UserID" name="uname" required>
-    <br>
-    <label><b>Password:</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-    <br>
-    <button type="submit">Login</button>
-    <button type="reset">Reset</button>
-  </div>
+    <button class="btn btn-lg btn-outline-primary" type="submit">Login</button>
+    <button class="btn btn-lg btn-outline-danger" type="reset">Reset</button>
+ 
 
  
 </form>
-
+</div>
+</div>
+    
+   
 </body>
 </html>

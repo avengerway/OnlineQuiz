@@ -32,7 +32,7 @@ public class User {
         }
         return status;
     }
-    public boolean signUp(int id,String pass)
+    public boolean signUp(String id,String pass)
     {
       
         boolean flag=false;
@@ -41,7 +41,7 @@ public class User {
             Connection con=DBConnection.getConnection();
           PreparedStatement ps=con.prepareStatement("update userlogin set password=password(?) where userid=?");
             ps.setString(1,pass);
-            ps.setInt(2, id);
+            ps.setString(2, id);
             ps.executeUpdate();
             flag=true;
      con.close();
@@ -53,14 +53,14 @@ public class User {
         }
         return flag;
     }
-    public boolean signIn(int id,String pass)
+    public boolean signIn(String id,String pass)
     {
         boolean flag=false;
         try
         {
             Connection con=DBConnection.getConnection();
             PreparedStatement st = con.prepareStatement("select * from userlogin where userid=? and password = password(?)");
-            st.setInt(1,id);
+            st.setString(1,id);
             st.setString(2,pass);
             ResultSet rs=st.executeQuery();
             if(rs.next())

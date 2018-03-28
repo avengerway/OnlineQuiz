@@ -60,6 +60,30 @@
         <servlet-name>editdeletesubjectquestions</servlet-name>
         <servlet-class>com.quiz.controller.editdeletesubjectquestions</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>logoutcontroller</servlet-name>
+        <servlet-class>com.quiz.controller.logoutcontroller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editquestioncontroller</servlet-name>
+        <servlet-class>com.quiz.controller.editquestioncontroller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateQuestionController</servlet-name>
+        <servlet-class>com.quiz.controller.UpdateQuestionController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deletequestioncontroller</servlet-name>
+        <servlet-class>com.quiz.controller.deletequestioncontroller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadFileController</servlet-name>
+        <servlet-class>com.quiz.controller.UploadFileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addsubjectscontroller</servlet-name>
+        <servlet-class>com.quiz.controller.addsubjectscontroller</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>quizbranchcontroller</servlet-name>
         <url-pattern>/quizbranchcontroller</url-pattern>
@@ -119,6 +143,30 @@
     <servlet-mapping>
         <servlet-name>editdeletesubjectquestions</servlet-name>
         <url-pattern>/editdelete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logoutcontroller</servlet-name>
+        <url-pattern>/logoutcontroller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editquestioncontroller</servlet-name>
+        <url-pattern>/editquestioncontroller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateQuestionController</servlet-name>
+        <url-pattern>/UpdateQuestionController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deletequestioncontroller</servlet-name>
+        <url-pattern>/deletequestioncontroller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadFileController</servlet-name>
+        <url-pattern>/UploadFileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addsubjectscontroller</servlet-name>
+        <url-pattern>/addsubjectscontroller</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

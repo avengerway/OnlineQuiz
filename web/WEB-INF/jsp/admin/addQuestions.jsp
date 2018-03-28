@@ -1,8 +1,3 @@
-<%-- 
-    Document   : addQuestions
-    Created on : Mar 31, 2017, 12:46:21 AM
-    Author     : Piyush
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,10 +5,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add Questions</title>
-         <script src="js/jquery-1.11.3.js"></script>
+          <link rel="stylesheet" href="css/bootstrap.min.css">
+ 
+       <script src="js/jquery-3.3.1.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
      
     </head>
     <body>
+        <%@include file="../../jspf/adminheaderoptions.jspf" %>
         
             <script type="text/javascript">
           $(document).ready(function(){
@@ -118,14 +119,14 @@
                <tr>
                     <td><b>SEMESTER</b></td>
 	<td>
-	<select id="sem" name="sem">
+	   <select id="sem" name="sem">
          
-        <option value="3" selected id="choose">SEMESTER 3</option>
-        <option value="4" id="choose">SEMESTER 4 </option>
-          <option value="5" id="choose">SEMESTER 5</option>
-        <option value="6" id="choose">SEMESTER 6</option>
-          <option value="7" id="choose">SEMESTER 7</option>
-        <option value="8" id="choose">SEMESTER 8</option>
+        <option value="3" selected >SEMESTER 3</option>
+        <option value="4" >SEMESTER 4 </option>
+          <option value="5">SEMESTER 5</option>
+        <option value="6">SEMESTER 6</option>
+          <option value="7">SEMESTER 7</option>
+        <option value="8">SEMESTER 8</option>
 	</select>
 	</td>
 	

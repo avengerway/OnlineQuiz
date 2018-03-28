@@ -1,8 +1,3 @@
-<%-- 
-    Document   : instructions
-    Created on : Apr 9, 2017, 3:44:12 PM
-    Author     : Piyush
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

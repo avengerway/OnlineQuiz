@@ -33,7 +33,14 @@ public class MockTestResultController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
+        int right1[]=new int[2];
+          int right2[]=new int[2];
+            int right3[]=new int[2];
+              int right4[]=new int[2];
+                int right5[]=new int[2];
+                  int right6[]=new int[2];
       String json1=request.getParameter("jsonfile1");
        String json2=request.getParameter("jsonfile2");
         String json3=request.getParameter("jsonfile3");
@@ -50,12 +57,12 @@ public class MockTestResultController extends HttpServlet {
                 String sub6=sube.get(5).getSub();
         
       Quizbo bo=new Quizbo();
-  int right1=bo.getMockAnswer(json1,sub1);
-  int right2=bo.getMockAnswer(json2,sub2);
-  int right3=bo.getMockAnswer(json3,sub3);
-   int right4=bo.getMockAnswer(json4,sub4);
-  int right5=bo.getMockAnswer(json5,sub5);
-  int right6=bo.getMockAnswer(json6,sub6);
+   right1=bo.getMockAnswer(json1,sub1);
+  right2=bo.getMockAnswer(json2,sub2);
+   right3=bo.getMockAnswer(json3,sub3);
+   right4=bo.getMockAnswer(json4,sub4);
+   right5=bo.getMockAnswer(json5,sub5);
+   right6=bo.getMockAnswer(json6,sub6);
   RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/jsp/member/showMockTestResult.jsp");
 request.setAttribute("right1",right1);
 request.setAttribute("right2",right2);
