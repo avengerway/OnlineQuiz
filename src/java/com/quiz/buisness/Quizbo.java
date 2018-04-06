@@ -96,8 +96,7 @@ public class Quizbo  {
     }
     public int[] getMockAnswer(String json,String sub)
     {
-        
-       int count[]=new int[2];
+   int count[]=new int[2];
         HashMap<String, String> map = new HashMap<>();
         try
         {
@@ -122,7 +121,6 @@ public class Quizbo  {
     }
     }
     
-
 
 
 

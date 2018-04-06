@@ -9,7 +9,13 @@
 <head>
      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
          <title>Online Quiz</title>
-      <script src="js/jquery-1.11.3.js"></script>
+     <link rel="stylesheet" href="css/bootstrap.min.css">
+ 
+<script src="js/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link rel="stylesheet" href="css/login.css">
         
 <style> 
 div.tab {
@@ -46,229 +52,112 @@ div.tab button.active {
 </head>
 <body>
     <%
-            ArrayList<Subject> sube=(ArrayList<Subject>)session.getAttribute("sublist");
-            String s1=sube.get(0).getSub();
-            String s2=sube.get(1).getSub();
-            String s3=sube.get(2).getSub();
-            String s4=sube.get(3).getSub();
-            String s5=sube.get(4).getSub();
-            String s6=sube.get(5).getSub();
-            
-             
-              
-        %>
+     ArrayList<Subject> sube=(ArrayList<Subject>)session.getAttribute("sublist");
+     %>
          
      
     
        
-      
-       <script type="text/javascript">
-        
-           
+        <script type="text/javascript">
+           var timer=3600;
+             var min=0;
+              var sec=0;
+               function startTimer(){
+    	min=parseInt(timer/60);
+    	sec=parseInt(timer%60);
+
+    	if(timer<1){
+          document.getElementById("submit").click();
+        }
+    		
+    	document.getElementById("time").innerHTML = "<b>Time Left: </b>"+min.toString()+":"+sec.toString();
+    	timer--;
+    	setTimeout(function(){ startTimer(); }, 1000);
+    }
        $(document).ready(function(){
       
          
              
             
-           
-           var id1= "<%=s1%>";
-           var id2="<%=s2%>";
-            var id3= "<%=s3%>";
-           var id4="<%=s4%>";
-            var id5= "<%=s5%>";
-           var id6="<%=s6%>";
-            var id11=id1.replace(/\s/g, '');
-            var id22=id2.replace(/\s/g, '');
-           
-           var id33=id3.replace(/\s/g, '');
-           
-           var id44=id4.replace(/\s/g, '');
-           
-           var id55=id5.replace(/\s/g, '');
-           
-           var id66=id6.replace(/\s/g, '');
+         
+           var arr=[];
+         <%for(int i=0;i< sube.size();i++) {%>
+           arr[<%= i %>] = "<%= sube.get(i).getSub() %>";
+        <%}%>
+            
+            for(var f=0;f<arr.length;f++)
+            {
+                arr[f]=arr[f].replace(/\s/g,'');
+            }
+            
+   
            
            
- var jsondata1,jsondata2,jsondata3,jsondata4,jsondata5,jsondata6;
-              
-           $.get('getMockTestController?table='+id1,function(data,status){
-            jsondata1=JSON.parse(data);
+             var data=[];
+             var jsondata;
+          
+            for(var k=0;k<arr.length;k++)
+            {
+                  
+                    (function(index)
+                    {
+                        
+           $.get('getMockTestController?table='+arr[index],function(dat,status){
+            jsondata=JSON.parse(dat);
+            data[index]=jsondata;
+      
+        
             
        var create;
-      
-           for(var i = 0; i < jsondata1.length;i++)
+        
+           for(var j = 0; j < jsondata.length;j++)
 	{
-		create ='<p><b>Question '+(i+1)+': </b><br/>'+jsondata1[i].question+'</p>'
-                        +'<br><p><b>A:</b><input type="radio" name="'+(id11+i)+'" value="A">'+jsondata1[i].ques_a+'</p>'
-                +'<br><p><b>B:</b><input type="radio" name="'+(id11+i)+'" value="B">'+jsondata1[i].ques_b+'</p>'
-                +'<br><p><b>C:</b><input type="radio" name="'+(id11+i)+'" value="C">'+jsondata1[i].ques_c+'</p>'
-                +'<br><p><b>D:</b><input type="radio" name="'+(id11+i)+'" value="D">'+jsondata1[i].ques_d+'</p>'
-                +'<hr>';
-                             
-              $('#question1').append(create);  
-	}
-    });
-              $.get('getMockTestController?table='+id2,function(data,status){
-             jsondata2=JSON.parse(data);
             
-       var create;
-      
-           for(var i = 0; i < jsondata2.length;i++)
-	{
-		create ='<p><b>Question '+(i+1)+': </b><br/>'+jsondata2[i].question+'</p>'
-                        +'<br><p><b>A:</b><input type="radio" name="'+(id22+i)+'" value="A">'+jsondata2[i].ques_a+'</p>'
-                +'<br><p><b>B:</b><input type="radio" name="'+(id22+i)+'" value="B">'+jsondata2[i].ques_b+'</p>'
-                +'<br><p><b>C:</b><input type="radio" name="'+(id22+i)+'" value="C">'+jsondata2[i].ques_c+'</p>'
-                +'<br><p><b>D:</b><input type="radio" name="'+(id22+i)+'" value="D">'+jsondata2[i].ques_d+'</p>'
+                 create ='<p><b>Question '+(j+1)+': </b><br/>'+jsondata[j].question+'</p>'
+		
+                        +'<br><p><b>A:</b><input type="radio" name="'+(arr[index]+j)+'" value="A">'+jsondata[j].ques_a+'</p>'
+                +'<br><p><b>B:</b><input type="radio" name="'+(arr[index]+j)+'" value="B">'+jsondata[j].ques_b+'</p>'
+                +'<br><p><b>C:</b><input type="radio" name="'+(arr[index]+j)+'" value="C">'+jsondata[j].ques_c+'</p>'
+                +'<br><p><b>D:</b><input type="radio" name="'+(arr[index]+j)+'" value="D">'+jsondata[j].ques_d+'</p>'
                 +'<hr>';
-                             
-              $('#question2').append(create);  
+                       
+                
+              $('#question'+(index+1)).append(create);  
 	}
+          
+          jsondata=null;
     });
-           $.get('getMockTestController?table='+id3,function(data,status){
-           jsondata3=JSON.parse(data);
-            
-       var create;
-      
-           for(var i = 0; i < jsondata3.length;i++)
-	{
-		create ='<p><b>Question '+(i+1)+': </b><br/>'+jsondata3[i].question+'</p>'
-                        +'<br><p><b>A:</b><input type="radio" name="'+(id33+i)+'" value="A">'+jsondata3[i].ques_a+'</p>'
-                +'<br><p><b>B:</b><input type="radio" name="'+(id33+i)+'" value="B">'+jsondata3[i].ques_b+'</p>'
-                +'<br><p><b>C:</b><input type="radio" name="'+(id33+i)+'" value="C">'+jsondata3[i].ques_c+'</p>'
-                +'<br><p><b>D:</b><input type="radio" name="'+(id33+i)+'" value="D">'+jsondata3[i].ques_d+'</p>'
-                +'<hr>';
-                             
-              $('#question3').append(create);  
-	}
-    });
-           $.get('getMockTestController?table='+id4,function(data,status){
-           jsondata4=JSON.parse(data);
-            
-       var create;
-      
-           for(var i = 0; i < jsondata4.length;i++)
-	{
-		create ='<p><b>Question '+(i+1)+': </b><br/>'+jsondata4[i].question+'</p>'
-                        +'<br><p><b>A:</b><input type="radio" name="'+(id44+i)+'" value="A">'+jsondata4[i].ques_a+'</p>'
-                +'<br><p><b>B:</b><input type="radio" name="'+(id44+i)+'" value="B">'+jsondata4[i].ques_b+'</p>'
-                +'<br><p><b>C:</b><input type="radio" name="'+(id44+i)+'" value="C">'+jsondata4[i].ques_c+'</p>'
-                +'<br><p><b>D:</b><input type="radio" name="'+(id44+i)+'" value="D">'+jsondata4[i].ques_d+'</p>'
-                +'<hr>';
-                             
-              $('#question4').append(create);  
-	}
-    });
-           $.get('getMockTestController?table='+id5,function(data,status){
-            jsondata5=JSON.parse(data);
-            
-       var create;
-      
-           for(var i = 0; i < jsondata5.length;i++)
-	{
-		create ='<p><b>Question '+(i+1)+': </b><br/>'+jsondata5[i].question+'</p>'
-                        +'<br><p><b>A:</b><input type="radio" name="'+(id55+i)+'" value="A">'+jsondata5[i].ques_a+'</p>'
-                +'<br><p><b>B:</b><input type="radio" name="'+(id55+i)+'" value="B">'+jsondata5[i].ques_b+'</p>'
-                +'<br><p><b>C:</b><input type="radio" name="'+(id55+i)+'" value="C">'+jsondata5[i].ques_c+'</p>'
-                +'<br><p><b>D:</b><input type="radio" name="'+(id55+i)+'" value="D">'+jsondata5[i].ques_d+'</p>'
-                +'<hr>';
-                             
-              $('#question5').append(create);  
-	}
-    });
-           $.get('getMockTestController?table='+id6,function(data,status){
-          jsondata6=JSON.parse(data);
-            
-       var create;
-      
-           for(var i = 0; i < jsondata6.length;i++)
-	{
-		create ='<p><b>Question '+(i+1)+': </b><br/>'+jsondata6[i].question+'</p>'
-                        +'<br><p><b>A:</b><input type="radio" name="'+(id66+i)+'" value="A">'+jsondata6[i].ques_a+'</p>'
-                +'<br><p><b>B:</b><input type="radio" name="'+(id66+i)+'" value="B">'+jsondata6[i].ques_b+'</p>'
-                +'<br><p><b>C:</b><input type="radio" name="'+(id66+i)+'" value="C">'+jsondata6[i].ques_c+'</p>'
-                +'<br><p><b>D:</b><input type="radio" name="'+(id66+i)+'" value="D">'+jsondata6[i].ques_d+'</p>'
-                +'<hr>';
-                             
-              $('#question6').append(create);  
-	}
-    });
+                    })(k);
+                   
+            }
+           
+       var jsonarray=[];
        document.getElementById("defaultOpen").click();
         $('#submit').click(function(){
-      
-        var a={};
+     
+        var a;
   
         var answer;
-  
+         var jsond;
         var ques_no;
-           
-     for(var j=0;j< jsondata1.length;j++)
+        for(var i=0;i<arr.length;i++)
+        {
+              jsond=data[i];
+                 a={};
+     for(var j=0;j< jsond.length;j++)
      {
-         answer=$('input[name='+(id11+j)+']:checked').val();
-         ques_no=jsondata1[j].question_no;
+         answer=$('input[name='+(arr[i]+j)+']:checked').val();
+       
+         ques_no=jsond[j].question_no;
         a[ques_no]=answer;
        
       }
       
-    var json1=JSON.stringify(a);
-     
-     var b={};
-        for(var j=0;j< jsondata2.length;j++)
-     {
-         answer=$('input[name='+(id22+j)+']:checked').val();
-         ques_no=jsondata2[j].question_no;
-        b[ques_no]=answer;
-       
-         
-     }
-     var json2=JSON.stringify(b);
-     
-     var c={};
-        for(var j=0;j< jsondata3.length;j++)
-     {
-         answer=$('input[name='+(id33+j)+']:checked').val();
-         ques_no=jsondata3[j].question_no;
-        c[ques_no]=answer;
-       
-         
-     }
-     var json3=JSON.stringify(c);
-     
-     var d={};
-        for(var j=0;j< jsondata4.length;j++)
-     {
-         answer=$('input[name='+(id44+j)+']:checked').val();
-         ques_no=jsondata4[j].question_no;
-        d[ques_no]=answer;
-       
-         
-     }
-     var json4=JSON.stringify(d);
-     
-     var e={};
-        for(var j=0;j< jsondata5.length;j++)
-     {
-         answer=$('input[name='+(id55+j)+']:checked').val();
-         ques_no=jsondata5[j].question_no;
-        e[ques_no]=answer;
-       
-         
-     }
-     var json5=JSON.stringify(e);
-     
-      var f={};
-        for(var j=0;j< jsondata6.length;j++)
-     {
-         answer=$('input[name='+(id66+j)+']:checked').val();
-         ques_no=jsondata6[j].question_no;
-        f[ques_no]=answer;
-       
-         
-     }
-     var json6=JSON.stringify(f);
+      jsonarray[i]=JSON.stringify(a);
+        }
      
      
-         document.location.href='MockTestResultController?jsonfile1='+json1+'&jsonfile2='+json2+'&jsonfile3='+json3+'&jsonfile4='+json4+'&jsonfile5='+json5+'&jsonfile6='+json6; 
+         document.location.href='MockTestResultController?jsonfile0='+jsonarray[0]<% for(int j=1;j<sube.size();j++){%>+'&jsonfile<%=j%>='+jsonarray[<%=j%>]<%}%>; 
         });
         
         
@@ -299,35 +188,23 @@ div.tab button.active {
        
 <div class="tab">
   <button id="defaultOpen" class="tablinks" onclick="openSubject(event, '<%=sube.get(0).getSub()%>')"><%=sube.get(0).getSub()%></button>
-  <button class="tablinks" onclick="openSubject(event, '<%=sube.get(1).getSub()%>')"><%=sube.get(1).getSub()%></button>
-  <button class="tablinks" onclick="openSubject(event, '<%=sube.get(2).getSub()%>')"><%=sube.get(2).getSub()%></button>
-   <button class="tablinks" onclick="openSubject(event, '<%=sube.get(3).getSub()%>')"><%=sube.get(3).getSub()%></button>
-  <button class="tablinks" onclick="openSubject(event, '<%=sube.get(4).getSub()%>')"><%=sube.get(4).getSub()%></button>
-  <button class="tablinks" onclick="openSubject(event, '<%=sube.get(5).getSub()%>')"><%=sube.get(5).getSub()%></button>
+  <% for(int i=1;i<sube.size();i++) 
+  { %>
+      <button class="tablinks" onclick="openSubject(event, '<%=sube.get(i).getSub()%>')"><%=sube.get(i).getSub()%></button>
+
+ <% } %>
+  
   <button id="submit" style="float:right;">SUBMIT </button>
 </div>
-
-<div id="<%=s1%>" class="tabcontent" >
-     <p id="question1" ></p>
+<% for(int i=0;i<sube.size();i++)
+{ %>
+    <div id="<%=sube.get(i).getSub()%>" class="tabcontent" >
+     <p id="question<%=(i+1)%>"></p>
 </div>
 
-<div  id="<%=s2%>" class="tabcontent">
-       <p id="question2"></p> 
-</div>
+ <%} %>
 
-<div id="<%=s3%>" class="tabcontent">
-       <p id="question3"></p>
-</div>
-<div id="<%=s4%>" class="tabcontent" >
-     <p id="question4"></p>
-</div>
-
-<div  id="<%=s5%>" class="tabcontent">
-      <p id="question5"></p>
-</div>
-
-<div  id="<%=s6%>" class="tabcontent">
-      <p id="question6"></p>
-</div>
+      
+      <p id="dummy"></p>
 </body>
 </html>

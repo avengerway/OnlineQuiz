@@ -70,14 +70,14 @@
             <label for="repeatpassword"><strong>PASSWORD</strong></label>
               <input type="password" placeholder="Repeat Password" name="psw-repeat" id="repeatpassword" class="form-control" required>
         </div>
-    <button class="btn btn-lg btn-primary" type="submit">Signup</button>
+    <button class="btn btn-lg btn-primary" type="submit" onclick="return validate()">Signup</button>
     <button class="btn btn-lg btn-danger" type="reset">Reset</button>
      
 </form>
        
 </div>
 </div>
-
+  <h4 id="repeat"></h4>
 
 </body>
 </html>

@@ -109,9 +109,12 @@
                     <td><b>BRANCH</b></td>
 	<td>
 	<select id="branch" name="branch">
-	<option value="cse">Computer Science & Engineering</option>
-	<option value="me">Mechanical Engineering</option>
-	<option value="ce">Civil Engineering</option>
+	 <option value="cse" selected >Computer Science & Engineering</option>
+        <option value="mec">Mechanical</option>
+          <option value="civ">CIVIL</option>
+        <option value="ele">Electronics & Communication</option>
+          <option value="elt">Electrical</option>
+        <option value="ift">Information Technology</option>
 	</select>
 	</td>
 	

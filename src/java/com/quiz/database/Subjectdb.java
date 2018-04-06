@@ -216,6 +216,7 @@ try  {
     int c=1;
 for( String key : lm.keySet() ) {
      int ques_no=Integer.parseInt(key);
+     System.out.println(ques_no);
      ps.setObject(c++, ques_no);
 }
   ResultSet rs = ps.executeQuery();
@@ -223,6 +224,8 @@ for( String key : lm.keySet() ) {
   while(rs.next())
   {
      a[i]=rs.getString("answer"); 
+     a[i]=a[i].trim();
+   
      i++;
   }
 
@@ -236,9 +239,13 @@ catch(Exception ex)
     for(Map.Entry m:lm.entrySet()){  
    if(m.getValue().equals(a[i]))
    {
+       
      c++;  
    }
+   System.out.print("hashmap:"+m.getValue());
+   System.out.println("a[i]:"+a[i]);
    i++;
+   
   } 
     
 
@@ -373,7 +380,7 @@ catch(Exception ex)
        
        String sub=subject;
          sub=sub.replaceAll("\\s","");
-       String query="create table "+sub+" (select * from cbnst where 1=2)";
+       String query="create table "+sub+" (ques_id int not null AUTO_INCREMENT,ques_text varchar(500),ques_a varchar(500),ques_b varchar(500),ques_c varchar(500),ques_d varchar(500),answer varchar(50),PRIMARY KEY(ques_id))";
         try
         {
             Connection con=DBConnection.getConnection();

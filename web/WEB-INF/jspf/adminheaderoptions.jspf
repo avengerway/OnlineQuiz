@@ -10,6 +10,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
+       
              <li class="nav-item dropdown ">
         <a class="nav-link dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         FIELD
@@ -18,9 +19,12 @@
           <a class="dropdown-item" href="editdelete">Edit/Delete Questions</a>
           <a class="dropdown-item" href="add">Add Questions Manually</a>
            <a class="dropdown-item" href="UploadFileController">Add Using File</a>
+           <a class="dropdown-item" href="addsubjectscontroller">Add Subjects</a>
         
         </div>
       </li>
+      
+ 
        
       <li class="nav-item active">
         <a class="nav-link">WELCOME ADMIN</a>

@@ -6,10 +6,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-       <script src="js/jquery-1.11.3.js"></script>
+        
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+ 
+<script src="js/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link rel="stylesheet" href="css/login.css">  
     </head>
     <body>
+         <%@include file="../../jspf/fieldheader.jspf" %>
                <h1 align="center"><%=(String)session.getAttribute("table")%></h1>
        
      <% String sub=(String)session.getAttribute("table");
@@ -31,7 +38,8 @@
            
            
  var jsondata1;
-              
+           
+                    
            $.get('getMockTestController?table='+id1,function(data,status){
             jsondata1=JSON.parse(data);
             
@@ -49,6 +57,7 @@
               $('#question').append(create);  
 	}
     });
+                  
       $('#submit').click(function(){
          var a={};
   

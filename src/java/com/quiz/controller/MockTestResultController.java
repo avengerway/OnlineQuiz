@@ -9,6 +9,7 @@ import com.quiz.buisness.Quizbo;
 import com.quiz.model.Subject;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,41 +36,43 @@ public class MockTestResultController extends HttpServlet {
             throws ServletException, IOException {
         
         response.setContentType("text/html;charset=UTF-8");
-        int right1[]=new int[2];
-          int right2[]=new int[2];
-            int right3[]=new int[2];
-              int right4[]=new int[2];
-                int right5[]=new int[2];
-                  int right6[]=new int[2];
-      String json1=request.getParameter("jsonfile1");
-       String json2=request.getParameter("jsonfile2");
-        String json3=request.getParameter("jsonfile3");
-         String json4=request.getParameter("jsonfile4");
-          String json5=request.getParameter("jsonfile5");
-           String json6=request.getParameter("jsonfile6");
-         HttpSession session=request.getSession();
-          ArrayList<Subject> sube=(ArrayList<Subject>)session.getAttribute("sublist");
-          String sub1=sube.get(0).getSub();
-             String sub2=sube.get(1).getSub();
-                String sub3=sube.get(2).getSub();
-                String sub4=sube.get(3).getSub();
-             String sub5=sube.get(4).getSub();
-                String sub6=sube.get(5).getSub();
         
+//                  String[] jsondat=null;
+//                  String []jsonarray=request.getParameterValues("jsonfile");
+//                  System.out.println(jsonarray);
+//        for (String jsonarray1 : jsonarray) {
+//            jsondat = jsonarray1.split(",");  
+//                
+//        }
+               HttpSession session=request.getSession();
+          ArrayList<Subject> sube=(ArrayList<Subject>)session.getAttribute("sublist");
+          String arr[]=new String[sube.size()];
+          String str="";
+          for(int j=0;j<arr.length;j++)
+          {
+              str="jsonfile"+j;
+              String json=request.getParameter(str);
+              arr[j]=json;
+          }
+       String sub;
       Quizbo bo=new Quizbo();
-   right1=bo.getMockAnswer(json1,sub1);
-  right2=bo.getMockAnswer(json2,sub2);
-   right3=bo.getMockAnswer(json3,sub3);
-   right4=bo.getMockAnswer(json4,sub4);
-   right5=bo.getMockAnswer(json5,sub5);
-   right6=bo.getMockAnswer(json6,sub6);
+       int right1[]=new int[2];
+       int answers[][]=new int[arr.length][2];
+       for(int i=0;i<sube.size();i++)
+       {
+           sub=sube.get(i).getSub();
+          right1=bo.getMockAnswer(arr[i],sub);
+          for(int j=0;j<right1.length;j++)
+          {
+              answers[i][j]=right1[j];
+          }
+          right1=null;
+          
+       }
+ 
   RequestDispatcher rd=request.getRequestDispatcher("WEB-INF/jsp/member/showMockTestResult.jsp");
-request.setAttribute("right1",right1);
-request.setAttribute("right2",right2);
-request.setAttribute("right3",right3);
-request.setAttribute("right4",right4);
-request.setAttribute("right5",right5);
-request.setAttribute("right6",right6);
+  request.setAttribute("right",answers);
+rd.forward(request, response);
 rd.forward(request, response);
   
   
@@ -115,3 +118,8 @@ rd.forward(request, response);
     }// </editor-fold>
 
 }
+
+       
+
+           
+      
